@@ -16,6 +16,7 @@ public class Singleton4 {
                     instance = new Singleton4();
                 }
             }
+
         }
         return instance;
     }
