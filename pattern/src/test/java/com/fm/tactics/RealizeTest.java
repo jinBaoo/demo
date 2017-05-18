@@ -24,6 +24,10 @@ public class RealizeTest {
     }
 
     @Test
+    public void DateTest() {
+    }
+
+    @Test
     public void test02(){
         save(1);
     }
