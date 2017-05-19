@@ -1,16 +1,21 @@
 package com.fm.singleton;
 
-/** 单例懒汉式/静态内部类
- * @author moore
- * @Date ${date} ${time}
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/** 单例 枚举
+ * @author moore  Administrator
+ * @Date 2017/5/19 0019 下午 2:08
  */
-public class Singleton5 {
-    private  static class SingletonHolder {
-        private static final Singleton5 INSTANCE = new Singleton5();
+public enum Singleton5 {
+    INSTANCE;
+    private static final Logger LOGGER = LoggerFactory.getLogger(Singleton5.class);
+
+    public void showMessage() {
+        System.out.println(",枚举创建对象");
     }
-    private Singleton5() {
-    }
-    public static  final  Singleton5 getInstance() {
-        return SingletonHolder.INSTANCE;
+
+    public static void main(String[] args) {
+        Singleton5.INSTANCE.showMessage();
     }
 }

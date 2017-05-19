@@ -3,26 +3,32 @@ package com.fm.singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-/**
- * 单例饿汉式
- *@Author Moore
- *@Date 2017/5/18 0018 上午 10:20
+/** 单例 懒汉式 (线程不安全的)
+ * @author moore  Administrator
+ * @Date 2017/5/19 0019 上午 11:10
  */
 public class Singleton1 {
-    private final static Logger logger = LoggerFactory.getLogger(Singleton1.class);
-    private static Singleton1 instance = new Singleton1();
+
+    private static final Logger logger = LoggerFactory.getLogger(Singleton1.class);
+    private static Singleton1 instance = null;
+
     private Singleton1() {
+        logger.info("调用构造器");
     }
+
     public static Singleton1 getInstance() {
+        logger.info("调用获取对象实例方法");
+        if(null == instance) {
+            instance = new Singleton1();
+        }
         return instance;
     }
-    public static void  main(String[] args) {
-        LocalDateTime now = LocalDateTime.now();
-        String formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(now);
-        logger.info("开始时间 :"+formatter);
-        Singleton1 instance = Singleton1.getInstance();
+
+    public void showMassage() {
+        System.out.println("调用普通方法");
+    }
+
+    public static void main (String[] args) {
+        Singleton1.getInstance().showMassage();
     }
 }
